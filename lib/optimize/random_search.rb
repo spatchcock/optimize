@@ -1,6 +1,6 @@
 module Optimize
 
-  class RandomSearch < Strategy
+  class RandomSearch < Strategy 
 
     def initialize(options={})
       super
