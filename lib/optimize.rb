@@ -1,5 +1,5 @@
 require 'math_function'
-require 'optimize/base'
+require 'optimize/strategy'
 require 'optimize/random_search'
 require 'optimize/gradient_descent'
 

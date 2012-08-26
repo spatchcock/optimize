@@ -12,10 +12,6 @@ Author: Andrew Berkeley (andrew.berkeley.is@googlemail.com)
 Homepage: https://github.com/spatchcock/optimize
 
 
-Acknowledgements
-================
-A significant inspiration is Jason Browlee's Clever Algorithms book (https://github.com/jbrownlee/CleverAlgorithms).
-
 Requirements
 ============
 

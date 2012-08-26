@@ -1,6 +1,6 @@
 module Optimize
 
-  class GradientDescent < Base
+  class GradientDescent < Strategy
 
     attr_accessor :step_size, :momentum_step_size, :precision
 
