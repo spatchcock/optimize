@@ -56,7 +56,7 @@ describe Optimize::RandomSearch do
 		solver.candidate_vector   = Proc.new { { :x => rand * 10.0, :a => rand * 10.0, :b => rand }	}
 
 		solution = solver.search(1000)[:vector]
-		function.evaluate(solution).should be_within(0.5).of(50)
+		function.evaluate(solution).should be_within(1.0).of(50)
 	end
 
 	it "should find a solution to exponential decay" do
