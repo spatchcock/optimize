@@ -18,22 +18,21 @@ Requirements
 * The code has only been tested in Ruby 1.9.2 
 * The math-function library, found at https://github.com/spatchcock/math-function
 
+Contributing
+============
+
+If you find a bug or think that you improve on the code, feel free to contribute.
+
+You can:
+
+* Send the author a message ("andrew.berkeley.is@googlemail.com":mailto:andrew.berkeley.is@googlemail.com)
+* Create an issue
+* Fork the project and submit a pull request.
+
 
 License
 =======
 
 © Copyright 2012 Andrew Berkeley.
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program (see the COPYING file).  If not, see
-<http://www.gnu.org/licenses/>.
+Licensed under the MIT license (See COPYING file for details)

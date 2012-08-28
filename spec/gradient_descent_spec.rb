@@ -76,7 +76,7 @@ describe Optimize::GradientDescent do
 		  solver.search_space[:a] = 100
 		  solver.search_space[:b] = 1
 
-		  solver.step_size = 0.00001
+		  solver.step_size = 0.000002
 
 			solver.objective_function = Proc.new do |vector|
 				candidate = function.set(vector).distribution(data.x)

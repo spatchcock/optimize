@@ -83,7 +83,7 @@ module Optimize
         # Calculate the change in parameter - often known as epsilon (ε)
         # Calculate the change in cost attributable to parameter in isolation.
         delta_param = last[:vector][param] - previous[:vector][param]
-        delta_cost  = partial_cost - previous[:cost]
+        delta_cost  = partial_cost         - previous[:cost]
 
         # Rate of change of cost with respect to parameter in isolation
         partial_derivative = delta_cost / delta_param
