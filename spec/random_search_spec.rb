@@ -10,7 +10,8 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(32.0, vector) }
-		solver.candidate_vector   = Proc.new { { :x => rand * 20.0 }	}
+
+		solver.search_space[:x] = 0..20
 
 		solver.search(500)[:vector][:x].should be_within(0.1).of(3)
 	end
@@ -20,6 +21,7 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(32.0, vector) }
+
 		solver.search_space[:x] = 0..20
 
 		solver.search(500)[:vector][:x].should be_within(0.1).of(3)
@@ -30,7 +32,9 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(18.0, vector) }
-		solver.candidate_vector   = Proc.new { { :x => rand * 10.0, :c => rand * 10.0 }	}
+
+		solver.search_space[:x] = 0..10
+		solver.search_space[:c] = 0..10
 
 		solution = solver.search(1000)[:vector]
 		function.evaluate(solution).should be_within(0.1).of(18)
@@ -41,6 +45,7 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(18.0, vector) }
+
 		solver.search_space[:x] = 0..10
 		solver.search_space[:c] = 0..10
 
@@ -53,7 +58,10 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(50.0, vector) }
-		solver.candidate_vector   = Proc.new { { :x => rand * 10.0, :a => rand * 10.0, :b => rand }	}
+
+		solver.search_space[:x] = 0..10
+		solver.search_space[:a] = 0..10
+		solver.search_space[:b] = 0..1
 
 		solution = solver.search(1000)[:vector]
 		function.evaluate(solution).should be_within(1.0).of(50)
@@ -64,18 +72,25 @@ describe Optimize::RandomSearch do
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(2.0, vector) }
-		solver.candidate_vector   = Proc.new { { :x => rand * 10.0, :b => rand }	}
+
+		solver.search_space[:x] = 0..10
+		solver.search_space[:b] = 0..1
 
 		solution = solver.search(1000)[:vector]
 		function.evaluate(solution).should be_within(0.1).of(2)
 	end
 
 	it "should find a solution to polynomial" do
-		function = Math.function { a0 * x + a1 * x**2 + a2 * x**3 + a4 * x**4 }
+		function = Math.function { a1 * x + a2 * x**2 + a3 * x**3 + a4 * x**4 }
 
 		solver = Optimize::RandomSearch.new
 		solver.objective_function = Proc.new { |vector| function.absolute_difference(45.0, vector) }
-		solver.candidate_vector   = Proc.new { { :x => rand * 100, :a0 => rand, :a1 => rand, :a2 => rand, :a4 => rand }	}
+
+		solver.search_space[:x]  = 0..100
+		solver.search_space[:a1] = 0..1
+		solver.search_space[:a2] = 0..1
+		solver.search_space[:a3] = 0..1
+		solver.search_space[:a4] = 0..1
 
 		solution = solver.search(10000)[:vector]
 		function.evaluate(solution).should be_within(1.0).of(45.0)
@@ -97,7 +112,7 @@ describe Optimize::RandomSearch do
 				candidate.sum_of_squares(data)
 			end
 
-			solver.candidate_vector = Proc.new { { :a => rand * 10.0 }	}
+			solver.search_space[:a] = 0..10
 
 			solver.search()[:vector][:a].should be_within(0.1).of(2.0)
 		end
@@ -114,7 +129,8 @@ describe Optimize::RandomSearch do
 				candidate.sum_of_squares(data)
 			end
 
-			solver.candidate_vector = Proc.new { { :a => rand * 50.0, :c => rand * 50.0 }	}
+      solver.search_space[:a] = 0..50
+      solver.search_space[:c] = 0..10
 
 			solution = solver.search(10000)[:vector]
 			solution[:a].should be_within(1.0).of(2.0)
@@ -132,8 +148,9 @@ describe Optimize::RandomSearch do
 				candidate = function.set(vector).distribution(data.x)
 				candidate.sum_of_squares(data)
 			end
-
-			solver.candidate_vector = Proc.new { { :a => rand * 100.0, :b => rand }	}
+      
+      solver.search_space[:a] = 0..100
+      solver.search_space[:b] = 0..1
 
 			solution = solver.search(10000)[:vector]
 			solution[:a].should be_within(3.0).of(61.0)

@@ -20,6 +20,8 @@ module Optimize
     # may also cause instability. This may be mitigated by choosing a smaller step size
     # so as to reduce the probability of the respective parameter edging towards zero.
 
+    include Random
+
     attr_accessor :step_size, :precision
 
     def initialize(options={})
@@ -39,8 +41,8 @@ module Optimize
 
       until error < @precision do
 
-        previous_candidate = last_candidate || bootstrap_candidate
-        last_candidate     = candidate      || bootstrap_candidate
+        previous_candidate = last_candidate || random_candidate
+        last_candidate     = candidate      || random_candidate
 
         candidate = {}
         candidate[:vector] = @candidate_vector.call(last_candidate,previous_candidate)
@@ -63,13 +65,6 @@ module Optimize
     end
 
     protected
-
-    def bootstrap_candidate
-      {}.tap do |hash|
-        hash[:vector] = random_vector
-        hash[:cost]   = objective_function(hash[:vector])
-      end
-    end
 
     def downslope_vector(last,previous)
 
