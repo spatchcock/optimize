@@ -18,6 +18,13 @@ Requirements
 * The code has only been tested in Ruby 1.9.2 
 * The math-function library, found at https://github.com/spatchcock/math-function
 
+To do
+=====
+
+* More algorithms
+* Support for probability density functions
+* Support for contraining parameter search space
+
 Contributing
 ============
 
